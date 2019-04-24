@@ -13,11 +13,11 @@ namespace ChatBot
         public string Input {
             get { return _input; }
             set {
-                if(value == "")
+                if (value == "")
                 {
                     throw new ArgumentNullException();
                 }
-                else if(value.Length > 200)
+                else if (value.Length > 200)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
@@ -44,6 +44,7 @@ namespace ChatBot
                 }
             }
         }
+    }
 
     public class RandomResponce
     {
