@@ -12,5 +12,11 @@ namespace ChatBot.Controllers
         {
             return View();
         }
+
+        public IActionResult Responces()
+        {
+            List<Responce> res = ResponceDB.GetAllResponces();
+            return View(res);
+        }
     }
 }
