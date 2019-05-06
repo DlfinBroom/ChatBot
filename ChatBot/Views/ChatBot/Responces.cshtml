@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Responce>
+
+@{
+    ViewData["Title"] = "Responces";
+}
+
+<h1>Responces</h1>
+
+<!-- Add a link to the 'Add' page -->
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Input</p>
+            </th>
+            <th>
+                <p>Output</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var res in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => res.Input)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => res.Output)
+            </td>
+            <td>
+                <!-- Add a link to the 'Remove' page -->
+                <!-- Add a link to the 'Edit' page -->
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
