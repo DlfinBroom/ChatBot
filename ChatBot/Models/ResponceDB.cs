@@ -8,6 +8,18 @@ namespace ChatBot
     public static class ResponceDB
     {
         /// <summary>
+        /// Grabs one responce from the database with the same Id given,
+        /// Throws a KeyNotFoundException if not found
+        /// </summary>
+        /// <returns>
+        /// Returns the responce with the same Id
+        /// </returns>
+        internal static Responce GetOneResponce(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Grabs all responces that have an input, and returns that as a list.
         /// if no input exists, will grab a random responce from the database and
         /// returns that in a list.
