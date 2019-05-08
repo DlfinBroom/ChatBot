@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Responce>
+
+@{
+    ViewData["Title"] = "Responces";
+}
+
+<h1>Responces</h1>
+
+<a class="btn btn-secondary" asp-action="Add">Add</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <p>Input</p>
+            </th>
+            <th>
+                <p>Output</p>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var res in Model)
+{
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => res.Input)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => res.Output)
+            </td>
+            <td>
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@res">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@res">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
