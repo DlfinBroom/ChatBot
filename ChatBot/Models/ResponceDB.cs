@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ChatBot
 {
-    public class ResponceDB
+    public static class ResponceDB
     {
         /// <summary>
         /// Grabs all responces that have an input, and returns that as a list.
@@ -16,7 +16,7 @@ namespace ChatBot
         /// Returns a list of all responces with the same input given,
         /// returns a list with one random responce otherwise
         /// </returns>
-        public List<Responce> GetSomeResponces(string input)
+        public static List<Responce> GetSomeResponces(string input)
         {
             throw new NotImplementedException();
         }
@@ -27,7 +27,7 @@ namespace ChatBot
         /// <returns>
         /// Returns a list of all responces from the database
         /// </returns>
-        public List<Responce> GetAllResponces()
+        public static List<Responce> GetAllResponces()
         {
             throw new NotImplementedException();
         }
@@ -39,7 +39,7 @@ namespace ChatBot
         /// Returns true if responce was added to the database succesfully,
         /// returns false otherwise
         /// </returns>
-        public bool AddResponce(Responce res)
+        public static bool AddResponce(Responce res)
         {
             throw new NotImplementedException();
         }
@@ -51,7 +51,7 @@ namespace ChatBot
         /// Returns true if responce existed and was deleted succesfully,
         /// returns false otherwise.
         /// </returns>
-        public bool DeleteResponce(Responce res)
+        public static bool DeleteResponce(Responce res)
         {
             throw new NotImplementedException();
         }
@@ -64,7 +64,7 @@ namespace ChatBot
         /// Returns true if responces are deleted and added in succesfully,
         /// returns false otherwise.
         /// </returns>
-        public bool UpdateResponce(Responce oldRes, Responce newRes)
+        public static bool UpdateResponce(Responce oldRes, Responce newRes)
         {
             if (DeleteResponce(oldRes))
             {
