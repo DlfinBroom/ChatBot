@@ -6,7 +6,7 @@
 
 <h1>Responces</h1>
 
-<!-- Add a link to the 'Add' page -->
+<a class="btn btn-secondary" asp-action="Add">Add</a>
 
 <table class="table">
     <thead>
@@ -30,8 +30,8 @@
                 @Html.DisplayFor(modelItem => res.Output)
             </td>
             <td>
-                <!-- Add a link to the 'Remove' page -->
-                <!-- Add a link to the 'Edit' page -->
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-id="@res">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@res">Delete</a>
             </td>
         </tr>
 }
