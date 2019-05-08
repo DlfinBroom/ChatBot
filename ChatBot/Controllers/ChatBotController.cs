@@ -19,19 +19,57 @@ namespace ChatBot.Controllers
             return View(res);
         }
 
+        [HttpGet]
         public IActionResult Add()
         {
             return View();
         }
-
-        public IActionResult Edit(Responce res)
+        [HttpPost]
+        public IActionResult Add(Responce res)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                // Add responce to the DB
+                // ResponceDB.AddResponce(res);
+                return View();
+            }
+            return View(res);
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Responce res = ResponceDB.GetOneResponce(int id);
+            return View(res);
+        }
+        [HttpPost]
+        public IActionResult Edit(Responce res)
+        {
+            if (ModelState.IsValid)
+            {
+                // Edit responce in the DB
+                // ResponceDB.EditResponce(id, res);
+                return View();
+            }
+            return View(res);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Responce res = ResponceDB.GetOneResponce(int id);
+            return View(res);
+        }
+        [HttpPost, ActionName("Delete")]
         public IActionResult Delete(Responce res)
         {
-            return View();
+            if (ModelState.IsValid)
+            {
+                // Delete responce in the DB
+                // ResponceDB.DeleteResponce(id, res);
+                return View();
+            }
+            return View(res);
         }
     }
 }
