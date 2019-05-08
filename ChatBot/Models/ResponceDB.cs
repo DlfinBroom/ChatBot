@@ -32,6 +32,11 @@ namespace ChatBot
             throw new NotImplementedException();
         }
 
+        internal static Responce GetOneResponce(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Adds the responce given to the database.
         /// </summary>

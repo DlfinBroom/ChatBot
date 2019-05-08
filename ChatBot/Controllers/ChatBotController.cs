@@ -39,7 +39,7 @@ namespace ChatBot.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Responce res = ResponceDB.GetOneResponce(int id);
+            Responce res = ResponceDB.GetOneResponce(id);
             return View(res);
         }
         [HttpPost]
@@ -57,7 +57,7 @@ namespace ChatBot.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Responce res = ResponceDB.GetOneResponce(int id);
+            Responce res = ResponceDB.GetOneResponce(id);
             return View(res);
         }
         [HttpPost, ActionName("Delete")]
