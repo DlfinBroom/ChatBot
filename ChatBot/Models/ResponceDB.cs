@@ -111,9 +111,14 @@ namespace ChatBot
         /// Returns true if responce was added to the database succesfully,
         /// returns false otherwise
         /// </returns>
-        public static bool AddResponce(Responce res)
+        public static bool AddResponce(Responce res, ChatBotContext context)
         {
-            throw new NotImplementedException();
+            context.Responce.Add(res);
+            if(context.SaveChanges() == 1)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -123,9 +128,14 @@ namespace ChatBot
         /// Returns true if responce existed and was deleted succesfully,
         /// returns false otherwise.
         /// </returns>
-        public static bool DeleteResponce(Responce res)
+        public static bool DeleteResponce(Responce res, ChatBotContext context)
         {
-            throw new NotImplementedException();
+            context.Responce.Remove(res);
+            if (context.SaveChanges() == 1)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -136,11 +146,12 @@ namespace ChatBot
         /// Returns true if responces are deleted and added in succesfully,
         /// returns false otherwise.
         /// </returns>
-        public static bool UpdateResponce(Responce oldRes, Responce newRes)
+        public static bool UpdateResponce(Responce res, ChatBotContext context)
         {
-            if (DeleteResponce(oldRes))
+            context.Responce.Update(res);
+            if (context.SaveChanges() == 1)
             {
-                return AddResponce(newRes);
+                return true;
             }
             return false;
         }
