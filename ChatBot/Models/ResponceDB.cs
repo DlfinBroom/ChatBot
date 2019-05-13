@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ChatBot.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,21 +18,58 @@ namespace ChatBot
         /// </returns>
         internal static Responce GetOneResponce(int id)
         {
-            throw new NotImplementedException();
+            SqlConnection con = DBHelper.GetConnection();
+            SqlCommand resCmd = new SqlCommand();
+            resCmd.Connection = con;
+            resCmd.CommandText =
+                "Select Input, Output " +
+                "From Responce " +
+                "Where ResponceID is " + id;
+
+            con.Open();
+
+            SqlDataReader rdr = resCmd.ExecuteReader();
+            Responce res = new Responce();
+            res.Input = (string)rdr["Input"];
+            res.Output = (string)rdr["Output"];
+
+            con.Dispose();
+            return res;
         }
 
         /// <summary>
         /// Grabs all responces that have an input, and returns that as a list.
-        /// if no input exists, will grab a random responce from the database and
-        /// returns that in a list.
+        /// if no such input exists, returns an empty list
         /// </summary>
         /// <returns>
         /// Returns a list of all responces with the same input given,
-        /// returns a list with one random responce otherwise
+        /// returns an empty list if no responces have that input
         /// </returns>
         public static List<Responce> GetSomeResponces(string input)
         {
-            throw new NotImplementedException();
+            SqlConnection con = DBHelper.GetConnection();
+            SqlCommand resCmd = new SqlCommand();
+            resCmd.Connection = con;
+            resCmd.CommandText =
+                "Select Input, Output " +
+                "From Responce " +
+                "Where Input is " + input + " " +
+                "Order by Input";
+
+            con.Open();
+
+            SqlDataReader rdr = resCmd.ExecuteReader();
+            List<Responce> responces = new List<Responce>();
+            while (rdr.Read())
+            {
+                Responce res = new Responce();
+                res.Input = (string)rdr["Input"];
+                res.Output = (string)rdr["Output"];
+                responces.Add(res);
+            }
+
+            con.Dispose();
+            return responces;
         }
 
         /// <summary>
@@ -41,7 +80,28 @@ namespace ChatBot
         /// </returns>
         public static List<Responce> GetAllResponces()
         {
-            throw new NotImplementedException();
+            SqlConnection con = DBHelper.GetConnection();
+            SqlCommand resCmd = new SqlCommand();
+            resCmd.Connection = con;
+            resCmd.CommandText =
+                "Select Input, Output " +
+                "From Responce " +
+                "Order by Input";
+
+            con.Open();
+
+            SqlDataReader rdr = resCmd.ExecuteReader();
+            List<Responce> responces = new List<Responce>();
+            while (rdr.Read())
+            {
+                Responce res = new Responce();
+                res.Input = (string)rdr["Input"];
+                res.Output = (string)rdr["Output"];
+                responces.Add(res);
+            }
+
+            con.Dispose();
+            return responces;
         }
 
         /// <summary>
