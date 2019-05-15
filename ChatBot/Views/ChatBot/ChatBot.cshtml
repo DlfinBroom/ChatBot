@@ -6,3 +6,19 @@
 <h1>ChatBot</h1>
 
 <a class="btn btn-primary" asp-action="Responces">Edit Responces</a>
+
+@if (ViewData["Responce"] != null)
+{
+    <h2 class="text-lg-left">@ViewData["Responce"]</h2>
+}
+
+<form asp-action="Responce">
+    <label></label>
+    <input />
+    <span class="text-danger"></span>
+    <br />
+
+    <input type="submit" value="Enter" />
+</form>
+
+<a class="btn btn-secondary" asp-action="Responces">Edit Responces</a>
