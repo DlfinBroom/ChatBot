@@ -23,6 +23,30 @@ namespace ChatBot.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public IActionResult ChatBot(string input)
+        {
+            input = input.Trim();
+            if(input != "" && input.Length < 200)
+            {
+                List<Responce> responces = ResponceDB.GetSomeResponces(input);
+                if(responces.Count() == 0)
+                {
+                    Responce filler = new Responce();
+                    filler.Input = input;
+                    /* ToDo: get a random responce out from the
+                     database istead of just having 'filler text' */
+                    filler.Output = "Filler Text";
+                    responces.Add(filler);
+                }
+                /* ToDo: set res to a random responce 
+                 from responces instead of always [0] */
+                Responce res = responces[0];
+                ViewData["Responce"] = res.Output;
+                return View();
+            }
+            return View(input);
+        }
 
         /// <summary>
         /// Page for editing all responces within the database
