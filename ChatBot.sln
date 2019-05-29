@@ -6,11 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBot", "ChatBot\ChatBot.csproj", "{1AA5ED3F-A145-4A47-A91C-91D27B3C8AE7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9DE9F565-C5AE-4909-8F57-4417E11E43F1}"
-	ProjectSection(SolutionItems) = preProject
-		ChatBotDBScript.sql = ChatBotDBScript.sql
-	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBotTest", "ChatBotTest\ChatBotTest.csproj", "{340C96BF-DE7A-4196-B95A-6AF7F5FB7336}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBotTest", "ChatBotTest\ChatBotTest.csproj", "{340C96BF-DE7A-4196-B95A-6AF7F5FB7336}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

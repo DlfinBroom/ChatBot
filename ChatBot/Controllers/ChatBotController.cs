@@ -9,9 +9,9 @@ namespace ChatBot.Controllers
 {
     public class ChatBotController : Controller
     {
-        private readonly ChatBotContext context;
+        private readonly ChatbotContext context;
 
-        public ChatBotController(ChatBotContext dbContext)
+        public ChatBotController(ChatbotContext dbContext)
         {
             context = dbContext;
         }
@@ -53,67 +53,8 @@ namespace ChatBot.Controllers
         /// </summary>
         public IActionResult Responces()
         {
-            List<Responce> res = ResponceDB.GetAllResponces();
+            List<Responce> res = ResponceDB.GetAllResponces(context);
             return View(res);
-        }
-
-        /// <summary>
-        /// Page for adding a new responce into the database
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet]
-        public IActionResult Add()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Add(Responce res)
-        {
-            if (ModelState.IsValid)
-            {
-                ResponceDB.AddResponce(res, context);
-                ViewData["Message"] = "Responce was added!";
-                return View();
-            }
-            return View(res);
-        }
-
-        /// <summary>
-        /// Page for editing a responce in the database
-        /// </summary>
-        [HttpGet]
-        public IActionResult Edit(int id)
-        {
-            Responce res = ResponceDB.GetOneResponce(id);
-            return View(res);
-        }
-        [HttpPost]
-        public IActionResult Edit(Responce res)
-        {
-            if (ModelState.IsValid)
-            {
-                ResponceDB.UpdateResponce(res, context);
-                ViewData["Message"] = "Responce was changed!";
-                return View();
-            }
-            return View(res);
-        }
-
-        /// <summary>
-        /// Page for removing a responce from the database
-        /// </summary>
-        [HttpGet]
-        public IActionResult Delete(int id)
-        {
-            Responce res = ResponceDB.GetOneResponce(id);
-            return View(res);
-        }
-        [HttpPost, ActionName("Delete")]
-        public IActionResult DeleteConfirm(int id)
-        {
-            Responce res = ResponceDB.GetOneResponce(id);
-            ResponceDB.DeleteResponce(res, context);
-            return RedirectToAction("Responces");
         }
     }
 }

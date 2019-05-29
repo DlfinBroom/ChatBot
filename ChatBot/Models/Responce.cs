@@ -4,58 +4,17 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ChatBot
+namespace ChatBot.Models
 {
     public class Responce
     {
         [Key]
-        public int ResponceID;
-        private string _input;
-        private string _output;
+        public int ResponceID { get; private set; }
 
-        public string Input {
-            get { return _input; }
-            set {
-                if (value == "")
-                {
-                    throw new ArgumentNullException();
-                }
-                else if (value.Length > 200)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                else
-                {
-                    Input = value;
-                }
-            }
-        }
-        public string Output {
-            get { return _output; }
-            set {
-                if (value == "")
-                {
-                    throw new ArgumentNullException();
-                }
-                else if (value.Length > 200)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-                else
-                {
-                    Output = value;
-                }
-            }
-        }
-    }
+        [MinLength(1), MaxLength(200)]
+        public string Input { get; set; }
 
-    public class RandomResponce
-    {
-        public Responce GetResponce(List<Responce> responces)
-        {
-            Random rand = new Random();
-            int index = rand.Next(0, responces.Count);
-            return responces[index];
-        }
+        [MinLength(1), MaxLength(200)]
+        public string Output { get; set; }
     }
 }

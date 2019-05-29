@@ -18,23 +18,7 @@ namespace ChatBot
         /// </returns>
         internal static Responce GetOneResponce(int id)
         {
-            SqlConnection con = DBHelper.GetConnection();
-            SqlCommand resCmd = new SqlCommand();
-            resCmd.Connection = con;
-            resCmd.CommandText =
-                "Select Input, Output " +
-                "From Responce " +
-                "Where ResponceID is " + id;
-
-            con.Open();
-
-            SqlDataReader rdr = resCmd.ExecuteReader();
-            Responce res = new Responce();
-            res.Input = (string)rdr["Input"];
-            res.Output = (string)rdr["Output"];
-
-            con.Dispose();
-            return res;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -47,29 +31,7 @@ namespace ChatBot
         /// </returns>
         public static List<Responce> GetSomeResponces(string input)
         {
-            SqlConnection con = DBHelper.GetConnection();
-            SqlCommand resCmd = new SqlCommand();
-            resCmd.Connection = con;
-            resCmd.CommandText =
-                "Select Input, Output " +
-                "From Responce " +
-                "Where Input is " + input + " " +
-                "Order by Input";
-
-            con.Open();
-
-            SqlDataReader rdr = resCmd.ExecuteReader();
-            List<Responce> responces = new List<Responce>();
-            while (rdr.Read())
-            {
-                Responce res = new Responce();
-                res.Input = (string)rdr["Input"];
-                res.Output = (string)rdr["Output"];
-                responces.Add(res);
-            }
-
-            con.Dispose();
-            return responces;
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -78,30 +40,15 @@ namespace ChatBot
         /// <returns>
         /// Returns a list of all responces from the database
         /// </returns>
-        public static List<Responce> GetAllResponces()
+        public static List<Responce> GetAllResponces(ChatbotContext context)
         {
-            SqlConnection con = DBHelper.GetConnection();
-            SqlCommand resCmd = new SqlCommand();
-            resCmd.Connection = con;
-            resCmd.CommandText =
-                "Select Input, Output " +
-                "From Responce " +
-                "Order by Input";
-
-            con.Open();
-
-            SqlDataReader rdr = resCmd.ExecuteReader();
-            List<Responce> responces = new List<Responce>();
-            while (rdr.Read())
-            {
-                Responce res = new Responce();
-                res.Input = (string)rdr["Input"];
-                res.Output = (string)rdr["Output"];
-                responces.Add(res);
-            }
-
-            con.Dispose();
-            return responces;
+            IEnumerable<Responce> res = from r in context.Responce
+                                 select new Responce
+                                 {
+                                     Input = r.Input,
+                                     Output = r.Output
+                                 };
+            return (List<Responce>)res;
         }
 
         /// <summary>
@@ -111,7 +58,7 @@ namespace ChatBot
         /// Returns true if responce was added to the database succesfully,
         /// returns false otherwise
         /// </returns>
-        public static bool AddResponce(Responce res, ChatBotContext context)
+        public static bool AddResponce(Responce res, ChatbotContext context)
         {
             context.Responce.Add(res);
             if(context.SaveChanges() == 1)
@@ -128,7 +75,7 @@ namespace ChatBot
         /// Returns true if responce existed and was deleted succesfully,
         /// returns false otherwise.
         /// </returns>
-        public static bool DeleteResponce(Responce res, ChatBotContext context)
+        public static bool DeleteResponce(Responce res, ChatbotContext context)
         {
             context.Responce.Remove(res);
             if (context.SaveChanges() == 1)
@@ -146,7 +93,7 @@ namespace ChatBot
         /// Returns true if responces are deleted and added in succesfully,
         /// returns false otherwise.
         /// </returns>
-        public static bool UpdateResponce(Responce res, ChatBotContext context)
+        public static bool UpdateResponce(Responce res, ChatbotContext context)
         {
             context.Responce.Update(res);
             if (context.SaveChanges() == 1)
