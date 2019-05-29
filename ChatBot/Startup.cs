@@ -31,11 +31,8 @@ namespace ChatBot
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            string con = Configuration.GetConnectionString("chatbotdb");
-            services.AddDbContext<ChatBotContext>(options => options.UseSqlServer(con));
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

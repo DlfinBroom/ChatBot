@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ChatBot.Models
 {
-    public class ChatBotContext : DbContext
+    public class ChatbotContext : DbContext
     {
-        public ChatBotContext (DbContextOptions<ChatBotContext> options) : base(options) { }
+        public ChatbotContext () : base() { }
 
         public DbSet<Responce> Responce { get; set; }
     }
