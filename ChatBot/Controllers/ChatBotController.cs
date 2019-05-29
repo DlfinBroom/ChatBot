@@ -9,12 +9,14 @@ namespace ChatBot.Controllers
 {
     public class ChatBotController : Controller
     {
+        /*
         private readonly ChatbotContext context;
 
         public ChatBotController(ChatbotContext dbContext)
         {
             context = dbContext;
         }
+        */
 
         /// <summary>
         /// Main page for interacting with the chatbot
@@ -26,8 +28,9 @@ namespace ChatBot.Controllers
         [HttpPost]
         public IActionResult ChatBot(string input)
         {
-            input = input.Trim();
-            if(input != "" && input.Length < 200)
+            //input = input.Trim();
+            //if(input != "" && input.Length < 200)
+            if(false) // the code below is broken, so this here is temperary to problem solve this
             {
                 List<Responce> responces = ResponceDB.GetSomeResponces(input);
                 if(responces.Count() == 0)
@@ -53,8 +56,11 @@ namespace ChatBot.Controllers
         /// </summary>
         public IActionResult Responces()
         {
+            /*
             List<Responce> res = ResponceDB.GetAllResponces(context);
             return View(res);
+            */
+            return View();
         }
     }
 }
