@@ -1,21 +1,17 @@
-﻿use master;
-if EXISTS(select * from sys.databases where name='ChatBotDB')
-drop database ChatBotDB;
+﻿create database ChatbotDB
 go
 
-Create Database ChatBotDB;
-Go
-
-use ChatBotDB
+use ChatbotDB
 go
 
-Create Table Responce(
-	ResponceID int Primary key,
-	[Input] varchar(200) not null,
-	[Output] varchar(200) not null
-);
+Create table Responce(
+	ResponceID	int	primary key,
+	Input		varchar(200) not null,
+	[Output]	varchar(200) not null
+)
 
-Insert into Responce
-(ResponceID, [Input], [Output])
-Values
-(1, 'Hello', 'Hi')
+insert into Responce(
+	ResponceID, Input, [Output]
+) values(
+	1, 'Hi', 'Hello'
+)

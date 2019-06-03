@@ -8,8 +8,14 @@ namespace ChatBot.Models
 {
     public class ChatbotContext : DbContext
     {
-        public ChatbotContext () : base() { }
+        public ChatbotContext(DbContextOptions<ChatbotContext> options) : base(options) {
+        }
 
         public DbSet<Responce> Responce { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Responce>().ToTable("Responce");
+        }
     }
 }
