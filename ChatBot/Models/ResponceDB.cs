@@ -16,9 +16,19 @@ namespace ChatBot
         /// <returns>
         /// Returns the responce with the same Id
         /// </returns>
-        internal static Responce GetOneResponce(int id)
+        internal static Responce GetOneResponce(int responceID, ChatbotContext context)
         {
-            throw new NotImplementedException();
+            using (context)
+            {
+                return (from r in context.Responce
+                        where r.ResponceID == responceID
+                        select new Responce
+                        {
+                            ResponceID = r.ResponceID,
+                            Input = r.Input,
+                            Output = r.Output
+                        }).FirstOrDefault();
+            }
         }
 
         /// <summary>
@@ -29,9 +39,20 @@ namespace ChatBot
         /// Returns a list of all responces with the same input given,
         /// returns an empty list if no responces have that input
         /// </returns>
-        public static List<Responce> GetSomeResponces(string input)
+        public static List<Responce> GetSomeResponces(string input, ChatbotContext context)
         {
-            throw new NotImplementedException();
+            using (context)
+            {
+                return (from r in context.Responce
+                        where r.Input == input
+                        orderby r.Input
+                        select new Responce
+                        {
+                            ResponceID = r.ResponceID,
+                            Input = r.Input,
+                            Output = r.Output
+                        }).ToList();
+            }
         }
 
         /// <summary>
@@ -42,21 +63,17 @@ namespace ChatBot
         /// </returns>
         public static List<Responce> GetAllResponces(ChatbotContext context)
         {
-            IEnumerable<Responce> allResponces = 
-                from r in context.Responce
-                select new Responce
-                {
-                    Input = r.Input,
-                    Output = r.Output
-                };
-            List<Responce> responces = new List<Responce>();
-            foreach(Responce res in allResponces)
+            using (context)
             {
-                Responce temp = new Responce();
-                temp.Input = res.Input;
-                temp.Output = res.Output;
+                return (from r in context.Responce
+                        orderby r.Input
+                        select new Responce
+                        {
+                            ResponceID = r.ResponceID,
+                            Input = r.Input,
+                            Output = r.Output
+                        }).ToList();
             }
-            return responces;
         }
 
         /// <summary>

@@ -9,7 +9,7 @@ namespace ChatBot.Models
     public class Responce
     {
         [Key]
-        public int ResponceID { get; private set; }
+        public int ResponceID { get; set; }
 
         [MinLength(1), MaxLength(200)]
         public string Input { get; set; }

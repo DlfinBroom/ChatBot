@@ -29,7 +29,7 @@ namespace ChatBot.Controllers
             input = input.Trim();
             if(input != "" && input.Length < 200)
             {
-                List<Responce> responces = ResponceDB.GetSomeResponces(input);
+                List<Responce> responces = ResponceDB.GetSomeResponces(input, context);
                 if(responces.Count() == 0)
                 {
                     Responce filler = new Responce();
