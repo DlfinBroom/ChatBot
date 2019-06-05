@@ -1,4 +1,10 @@
-﻿create database ChatbotDB
+﻿use master
+go
+
+drop database ChatbotDB
+go
+
+create database ChatbotDB
 go
 
 use ChatbotDB
@@ -13,5 +19,6 @@ Create table Responce(
 insert into Responce(
 	ResponceID, Input, [Output]
 ) values(
-	1, 'Hi', 'Hello'
+	1, 'Hi', 'Hello'),(
+	2, 'Hello', 'Hi'
 )

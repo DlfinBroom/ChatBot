@@ -53,11 +53,8 @@ namespace ChatBot.Controllers
         /// </summary>
         public IActionResult Responces()
         {
-            /*
             List<Responce> res = ResponceDB.GetAllResponces(context);
             return View(res);
-            */
-            return View();
         }
     }
 }
