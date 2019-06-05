@@ -42,13 +42,21 @@ namespace ChatBot
         /// </returns>
         public static List<Responce> GetAllResponces(ChatbotContext context)
         {
-            IEnumerable<Responce> res = from r in context.Responce
-                                 select new Responce
-                                 {
-                                     Input = r.Input,
-                                     Output = r.Output
-                                 };
-            return (List<Responce>)res;
+            IEnumerable<Responce> allResponces = 
+                from r in context.Responce
+                select new Responce
+                {
+                    Input = r.Input,
+                    Output = r.Output
+                };
+            List<Responce> responces = new List<Responce>();
+            foreach(Responce res in allResponces)
+            {
+                Responce temp = new Responce();
+                temp.Input = res.Input;
+                temp.Output = res.Output;
+            }
+            return responces;
         }
 
         /// <summary>
