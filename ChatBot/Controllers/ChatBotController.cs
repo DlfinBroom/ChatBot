@@ -105,7 +105,7 @@ namespace ChatBot.Controllers
             Responce res = ResponceDB.GetOneResponce(responceID, context);
             return View(res);
         }
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         public IActionResult DeleteConfirm(int responceID)
         {
             Responce res = ResponceDB.GetOneResponce(responceID, context);
