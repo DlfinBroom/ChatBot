@@ -73,6 +73,7 @@ namespace ChatBot.Controllers
                 ViewData["Added"] = "Responce was added!";
                 return View();
             }
+            ViewData["ErrorMsg"] = "Responce was not valid";
             return View(res);
         }
 
@@ -110,7 +111,7 @@ namespace ChatBot.Controllers
         {
             Responce res = ResponceDB.GetOneResponce(responceID, context);
             ResponceDB.DeleteResponce(res, context);
-            return RedirectToAction("Responce");
+            return RedirectToAction("Responces");
         }
     }
 }

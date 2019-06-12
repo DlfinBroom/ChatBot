@@ -1,4 +1,4 @@
-﻿@model ChatBot.Models.Responce
+﻿@model Responce
 
 @{
     ViewData["Title"] = "Add";
@@ -6,17 +6,19 @@
 
 <h1>Add</h1>
 
-<h4>Responce</h4>
+@if (ViewData["Added"] != null)
+{
+    <h3 class="text-success">@ViewData["Added"]</h3>
+}
+@if (ViewData["ErrorMsg"] != null)
+{
+    <h3 class="text-warning">@ViewData["ErrorMsg"]</h3>
+}
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Add">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" hidden>
-                <label asp-for="ResponceID" class="control-label"></label>
-                <input asp-for="ResponceID" class="form-control" />
-                <span asp-validation-for="ResponceID" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Input" class="control-label"></label>
                 <input asp-for="Input" class="form-control" />
@@ -28,7 +30,7 @@
                 <span asp-validation-for="Output" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add Responce" class="btn btn-primary"/>
             </div>
         </form>
     </div>

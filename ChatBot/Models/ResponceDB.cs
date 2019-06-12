@@ -18,17 +18,17 @@ namespace ChatBot
         /// </returns>
         internal static Responce GetOneResponce(int responceID, ChatbotContext context)
         {
-            using (context)
-            {
-                return (from r in context.Responce
-                        where r.ResponceID == responceID
-                        select new Responce
-                        {
-                            ResponceID = r.ResponceID,
-                            Input = r.Input,
-                            Output = r.Output
-                        }).FirstOrDefault();
-            }
+            Responce res = 
+                (from r in context.Responce
+                where r.ResponceID == responceID
+                select new Responce
+                {
+                    ResponceID = r.ResponceID,
+                    Input = r.Input,
+                    Output = r.Output
+                }).Single();
+            context.SaveChanges();
+            return res;
         }
 
         /// <summary>
@@ -41,18 +41,18 @@ namespace ChatBot
         /// </returns>
         public static List<Responce> GetSomeResponces(string input, ChatbotContext context)
         {
-            using (context)
-            {
-                return (from r in context.Responce
-                        where r.Input == input
-                        orderby r.Input
-                        select new Responce
-                        {
-                            ResponceID = r.ResponceID,
-                            Input = r.Input,
-                            Output = r.Output
-                        }).ToList();
-            }
+            List<Responce> res = 
+                (from r in context.Responce
+                where r.Input == input
+                orderby r.Input
+                select new Responce
+                {
+                    ResponceID = r.ResponceID,
+                    Input = r.Input,
+                    Output = r.Output
+                }).ToList();
+            context.SaveChanges();
+            return res;
         }
 
         /// <summary>
@@ -63,17 +63,17 @@ namespace ChatBot
         /// </returns>
         public static List<Responce> GetAllResponces(ChatbotContext context)
         {
-            using (context)
-            {
-                return (from r in context.Responce
-                        orderby r.Input
-                        select new Responce
-                        {
-                            ResponceID = r.ResponceID,
-                            Input = r.Input,
-                            Output = r.Output
-                        }).ToList();
-            }
+            List<Responce> res = 
+                (from r in context.Responce
+                orderby r.Input
+                select new Responce
+                {
+                    ResponceID = r.ResponceID,
+                    Input = r.Input,
+                    Output = r.Output
+                }).ToList();
+            context.SaveChanges();
+            return res;
         }
 
         /// <summary>
