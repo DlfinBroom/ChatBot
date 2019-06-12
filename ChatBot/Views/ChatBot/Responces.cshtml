@@ -6,9 +6,14 @@
 
 <h1>Responces</h1>
 
+<a class="btn btn-primary" asp-action="Add">Add</a>
+
 <table class="table">
     <thead>
         <tr>
+            <th hidden>
+                <p>ResponceID</p>
+            </th>
             <th>
                 <p>Input</p>
             </th>
@@ -21,6 +26,9 @@
 @foreach (var res in Model)
 {
         <tr>
+            <td hidden>
+                @Html.DisplayFor(modelItem => res.ResponceID)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => res.Input)
             </td>
@@ -28,8 +36,8 @@
                 @Html.DisplayFor(modelItem => res.Output)
             </td>
             <td>
-                <!-- <a class="btn btn-secondary" asp-action="Edit" asp-route-id="res">Edit</a>
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="res">Delete</a> -->
+                <a class="btn btn-secondary" asp-action="Edit" asp-route-responceID="@res.ResponceID">Edit</a>
+                <a class="btn btn-danger" asp-action="Delete" asp-route-responceID="@res.ResponceID">Delete</a>
             </td>
         </tr>
 }
