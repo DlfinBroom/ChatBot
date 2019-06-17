@@ -16,6 +16,7 @@ namespace ChatBot.Controllers
             context = dbContext;
         }
 
+        #region ChatBot View
         /// <summary>
         /// Main page for interacting with the chatbot
         /// </summary>
@@ -46,7 +47,9 @@ namespace ChatBot.Controllers
             }
             return View(res);
         }
+        #endregion
 
+        #region Responces View
         /// <summary>
         /// Page for editing all responces within the database
         /// </summary>
@@ -55,7 +58,9 @@ namespace ChatBot.Controllers
             List<Responce> res = ResponceDB.GetAllResponces(context);
             return View(res);
         }
+        #endregion
 
+        #region Add View
         /// <summary>
         /// Adds a new Responce to the database after the user fills out a form
         /// </summary>
@@ -76,7 +81,9 @@ namespace ChatBot.Controllers
             ViewData["ErrorMsg"] = "Responce was not valid";
             return View(res);
         }
+        #endregion
 
+        #region Edit View
         /// <summary>
         /// Edits a responce in the database after the user fills out a form
         /// </summary>
@@ -96,7 +103,9 @@ namespace ChatBot.Controllers
             }
             return View(res);
         }
+        #endregion
 
+        #region Delete View
         /// <summary>
         /// Deletes a responce from the database after the user confirms
         /// </summary>
@@ -113,5 +122,6 @@ namespace ChatBot.Controllers
             ResponceDB.DeleteResponce(res, context);
             return RedirectToAction("Responces");
         }
+        #endregion
     }
 }

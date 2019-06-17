@@ -9,6 +9,7 @@ namespace ChatBot
 {
     public static class ResponceDB
     {
+        #region Get Responces
         /// <summary>
         /// Grabs one responce from the database with the same Id given,
         /// Throws a KeyNotFoundException if not found
@@ -75,7 +76,9 @@ namespace ChatBot
             context.SaveChanges();
             return res;
         }
+        #endregion
 
+        #region Add/Edit/Delete Responces
         /// <summary>
         /// Adds the responce given to the database.
         /// </summary>
@@ -87,23 +90,6 @@ namespace ChatBot
         {
             context.Responce.Add(res);
             if(context.SaveChanges() == 1)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
-        /// Deletes the responce givin from the database, if it exists.
-        /// </summary>
-        /// <returns>
-        /// Returns true if responce existed and was deleted succesfully,
-        /// returns false otherwise.
-        /// </returns>
-        public static bool DeleteResponce(Responce res, ChatbotContext context)
-        {
-            context.Responce.Remove(res);
-            if (context.SaveChanges() == 1)
             {
                 return true;
             }
@@ -127,5 +113,25 @@ namespace ChatBot
             }
             return false;
         }
+
+        /// <summary>
+        /// Deletes the responce givin from the database, if it exists.
+        /// </summary>
+        /// <returns>
+        /// Returns true if responce existed and was deleted succesfully,
+        /// returns false otherwise.
+        /// </returns>
+        public static bool DeleteResponce(Responce res, ChatbotContext context)
+        {
+            context.Responce.Remove(res);
+            if (context.SaveChanges() == 1)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        
+        #endregion
     }
 }
